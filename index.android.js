@@ -5,7 +5,7 @@ import {
   Text,
   View
 } from 'react-native';
-import App from './src/App';
+import Tabs from './src/Tabs';
 
 
-AppRegistry.registerComponent('DogApp', () => App);
+AppRegistry.registerComponent('DogApp', () => Tabs);
