@@ -8,6 +8,28 @@ import {
   Button
 } from 'react-native';
 
+var styles = StyleSheet.create({
+
+    container: {
+        flex: 1, 
+        justifyContent: 'flex-start', 
+        alignItems: 'center',
+        backgroundColor: '#e9ecef',
+        paddingBottom: 20
+    },
+
+    image: {
+        width: '100%',
+        height: '70%'
+    },
+
+    label: {
+        fontSize: 50,
+        marginTop: 20,
+        flexGrow: 1
+    }
+})
+
 class App extends Component {
 
   constructor(props) {
@@ -28,12 +50,12 @@ class App extends Component {
   render() {
     var state = this.state;
     return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Image style={{width: 300, height: 300}} source={{uri: state.img}} />
-        <Text>
+      <View style={styles.container}>
+        <Image style={styles.image} source={{uri: state.img}} />
+        <Text style={styles.label}>
           Hello Dog!
         </Text>
-        <Button title="Next Dog" onPress={this.nextDog}/>
+        <Button style={styles.button} title="Next Dog" onPress={this.nextDog}/>
       </View>
     );
   }
