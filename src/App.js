@@ -7,6 +7,7 @@ import {
   Image,
   Button
 } from 'react-native';
+import RNShakeEvent from 'react-native-shake-event';
 
 var styles = StyleSheet.create({
 
@@ -36,6 +37,17 @@ class App extends Component {
       super(props)
       this.state = { img: 'https://dog.ceo/api/img/lhasa/n02098413_5638.jpg' }
       this.nextDog = this.nextDog.bind(this);
+  }
+
+  componentWillMount() {
+    var self = this;
+    RNShakeEvent.addEventListener('shake', () => {
+        fetch('https://dog.ceo/api/breeds/image/random').then(function(res) {
+            return res.json();
+        }).then(function(data){
+            self.setState({img: data.message})
+        });
+    });
   }
 
   nextDog() {
