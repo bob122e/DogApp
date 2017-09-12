@@ -5,7 +5,8 @@ import {
   Text,
   View,
   ActivityIndicator,
-  FlatList
+  FlatList,
+  TouchableOpacity
 } from 'react-native';
 
 var styles = StyleSheet.create({
@@ -17,6 +18,22 @@ var styles = StyleSheet.create({
         padding: 30
     }
 });
+
+class BreedButton extends Component {
+
+  render() {
+    var props = this.props;
+    return (
+      <View style={{padding: 10}}>
+        <TouchableOpacity onPress={() => props.navigation.navigate('Detail', {breed: props.breed})}>
+          <Text>{props.breed}</Text>
+        </TouchableOpacity>
+      </View>
+      
+    )
+  }
+
+}
 
 class App extends Component {
 
@@ -47,13 +64,14 @@ class App extends Component {
 
   render() {
     var state = this.state;
+    var props = this.props;
     return (
       <View style={styles.container}>
         {state.loading ? 
           <ActivityIndicator /> :
           <FlatList
             data={state.dogs}
-            renderItem={({item}) => <Text>{item.key}</Text>}
+            renderItem={({item}) => <BreedButton breed={item.key} navigation={props.navigation}></BreedButton>}
           />
         }
       </View>
